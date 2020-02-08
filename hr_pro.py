@@ -9,7 +9,7 @@ class Employee:
        self.salary = salary
        self.employment_year = employment_year
 
-       self.Emp.append({"name":self.name,"age":self.age,"salary":self.salary,"Work Experience":self.employment_year})
+       self.Emp.append({"name":self.name,"age":self.age,"salary":self.salary,"Work Experience":Employee.get_working_years(self)})
 
    def get_working_years(self):
 
@@ -28,12 +28,7 @@ class Manager(Employee):
         self.salary = salary
         self.employment_year = employment_year
         self.bonus_percentage = bonus_percentage
-        self.Mang.append({"name":self.name,"age":self.age,"salary":self.salary,"Work Experience":self.employment_year,"Bouns":self.bonus_percentage})
-
-    def get_working_years(self):
-        today = datetime.now()
-        yearExp = (today.year - self.employment_year)
-        return (int(yearExp))
+        self.Mang.append({"name":self.name,"age":self.age,"salary":self.salary,"Work Experience":Employee.get_working_years(self),"Bouns":Manager.get_bonus(self)})
 
     def get_bonus(self):
         x = self.salary * self.bonus_percentage
@@ -65,9 +60,7 @@ def main():
         age = int(input("Age: "))
         salary = float(input("Salary: "))
         employment_year = int(input("Employment year: "))
-        x = Employee(name,age,salary,employment_year)
-        workExp = Employee.get_working_years(x)
-        Employee(name, age ,salary ,workExp)
+        Employee(name,age,salary,employment_year)
         print("Employee added succesfully")
         print()
         main()
@@ -78,14 +71,11 @@ def main():
         salary = float(input("Salary: "))
         employment_year = int(input("Employment year: "))
         bouns = float(input("Bouns Percentage: "))
-        r = Manager(name,age,salary,employment_year,bouns)
-        workExp = Manager.get_working_years(r)
-        boun = Manager.get_bonus(r)
-        Manager(name,age,salary,workExp,boun)
+        Manager(name,age,salary,employment_year,bouns)
         print("Manager added succesfully")
         print()
         main()
-    else:
+    elif x == 5:
          print()
 
 if __name__ == '__main__':
